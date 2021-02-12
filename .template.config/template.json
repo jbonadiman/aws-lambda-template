@@ -1,0 +1,28 @@
+﻿{
+  "author": "João Vitor Bonadiman",
+  "name": "Default Lambda",
+  "description": "A starting-point AWS Lambda project with dependency injection functionality and basic NHibernate helper.",
+  "identity": "JoaoBonadiman.DefaultLambda.1.0",
+  "shortName": "defaultlambda",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "DefaultLambda",
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "netcoreapp2.1"
+        },
+        {
+          "choice": "netcoreapp3.1"
+        }
+      ],
+      "defaultValue": "netcoreapp3.1"
+    }
+  }
+}
