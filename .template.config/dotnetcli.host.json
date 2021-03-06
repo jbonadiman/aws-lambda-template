@@ -8,6 +8,10 @@
     "AddNHibernate": {
       "longName": "AddNHibernate",
       "shortName": "hb"
+    },
+    "UsePostgres": {
+      "longName": "UsePostgres",
+      "shortName": "pg"
     }
   }
 }

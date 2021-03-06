@@ -34,6 +34,11 @@
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "true"
+    },
+    "UsePostgres": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
     }
   },
   "sources": [
@@ -45,7 +50,9 @@
         "**/*.filelist",
         "**/*.user",
         "**/*.lock.json",
-        ".vs/**"
+        ".vs/**",
+        ".idea/**",
+        ".git/**"
       ],
       "modifiers": [
         {

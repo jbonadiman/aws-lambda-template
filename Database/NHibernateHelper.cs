@@ -4,7 +4,7 @@ using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
-#if (!AddDependencyInjection)
+#if (AddDependencyInjection == false)
 using System;
 #endif
 
@@ -23,17 +23,22 @@ namespace DefaultLambda.Database
 #endif
             )
         {
+#if (AddDependencyInjection)
+            var connectionString = configurationService
+                .GetConfiguration()["DB_CONN_STRING"]
+#else
+            var connectionString = Environment.GetEnvironmentVariable("DB_CONN_STRING");
+#endif
             Configuration hbnConfiguration = Fluently.Configure()
                 .Database(
-                    SQLiteConfiguration.Standard // Add database here
-                        .ConnectionString(
-#if (AddDependencyInjection)
-                            configurationService
-                                .GetConfiguration()["DB_HOST"]
+#if (UsePostgres)
+                    PostgreSQLConfiguration.PostgreSQL82
+                        .ConnectionString(connectionString)
 #else
-                            Environment.GetEnvironmentVariable("DB_HOST")
+                    SQLiteConfiguration.Standard // Add database here
+                        .ConnectionString(connectionString)
 #endif
-                        ).ShowSql())
+                        .ShowSql())
                 .Mappings(m =>
                     {
                         // Add mappings here
