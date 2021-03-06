@@ -24,10 +24,10 @@ namespace DefaultLambda.Database
             )
         {
 #if (AddDependencyInjection)
-            var connectionString = configurationService
+            string connectionString = configurationService
                 .GetConfiguration()["DB_CONN_STRING"];
 #else
-            var connectionString = Environment.GetEnvironmentVariable("DB_CONN_STRING");
+            string connectionString = Environment.GetEnvironmentVariable("DB_CONN_STRING");
 #endif
             Configuration hbnConfiguration = Fluently.Configure()
                 .Database(

@@ -11,16 +11,16 @@
     <PackageReference Include="Amazon.Lambda.Serialization.Json" Version="1.8.0"/>
   </ItemGroup>
   
-  <ItemGroup Condition="'$(UsePostgres)' and '$(AddNHibernate)'">
+  <ItemGroup Condition="$(UsePostgres) == true AND $(AddNHibernate) == true">
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.2"/>
   </ItemGroup>
   
-  <ItemGroup Condition="'$(AddNHibernate)'">
+  <ItemGroup Condition="$(AddNHibernate) == true">
     <PackageReference Include="FluentNHibernate" Version="3.1.0"/>
     <PackageReference Include="NHibernate" Version="5.3.5"/>
   </ItemGroup>
   
-  <ItemGroup Condition="'$(AddDependencyInjection)'">
+  <ItemGroup Condition="$(AddDependencyInjection) == true">
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0"/>
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0"/>
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="5.0.0"/>
