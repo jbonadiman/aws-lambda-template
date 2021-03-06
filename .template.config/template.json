@@ -29,6 +29,11 @@
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "true"
+    },
+    "AddNHibernate": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true"
     }
   },
   "sources": [
@@ -48,6 +53,13 @@
           "exclude": [
             "DependencyInjection/**",
             "**/I*.cs"
+          ]
+        },
+        {
+          "condition": "(!AddNHibernate)",
+          "exclude": [
+            "Database/INHibernateHelper.cs",
+            "Database/NHibernateHelper.cs"
           ]
         }
       ]

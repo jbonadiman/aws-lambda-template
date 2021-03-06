@@ -4,6 +4,10 @@
     "AddDependencyInjection": {
       "longName": "AddDependencyInjection",
       "shortName": "di"
+    },
+    "AddNHibernate": {
+      "longName": "AddNHibernate",
+      "shortName": "hb"
     }
   }
 }

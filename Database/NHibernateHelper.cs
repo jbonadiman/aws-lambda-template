@@ -4,25 +4,36 @@ using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
+#if (!AddDependencyInjection)
+using System;
+#endif
 
 namespace DefaultLambda.Database
 {
     public class NHibernateHelper
-        #if (AddDependencyInjection)
+#if (AddDependencyInjection)
         : INHibernateHelper
-        #endif
+#endif
     {
         private readonly ISessionFactory _hbnSessionFactory;
 
-        public NHibernateHelper(IConfigurationService configurationService)
+        public NHibernateHelper(
+#if (AddDependencyInjection)
+            IConfigurationService configurationService
+#endif
+            )
         {
             Configuration hbnConfiguration = Fluently.Configure()
                 .Database(
                     SQLiteConfiguration.Standard // Add database here
                         .ConnectionString(
+#if (AddDependencyInjection)
                             configurationService
-                                .GetConfiguration()["DB_HOST"])
-                        .ShowSql())
+                                .GetConfiguration()["DB_HOST"]
+#else
+                            Environment.GetEnvironmentVariable("DB_HOST")
+#endif
+                        ).ShowSql())
                 .Mappings(m =>
                     {
                         // Add mappings here
