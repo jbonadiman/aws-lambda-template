@@ -46,7 +46,8 @@
         {
           "condition": "(!AddDependencyInjection)",
           "exclude": [
-            "./DependencyInjection/**"
+            "DependencyInjection/**",
+            "**/I*.cs"
           ]
         }
       ]

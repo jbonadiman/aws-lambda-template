@@ -7,7 +7,10 @@ using NHibernate.Tool.hbm2ddl;
 
 namespace DefaultLambda.Database
 {
-    public class NHibernateHelper : INHibernateHelper
+    public class NHibernateHelper
+        #if (AddDependencyInjection)
+        : INHibernateHelper
+        #endif
     {
         private readonly ISessionFactory _hbnSessionFactory;
 
