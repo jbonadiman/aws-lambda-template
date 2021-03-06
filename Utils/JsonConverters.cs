@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace QrCodeGeneration.Utils
+namespace DefaultLambda.Utils
 {
     public class EpochConverter : JsonConverter<DateTime>
     {
