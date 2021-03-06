@@ -1,11 +1,12 @@
-﻿using DefaultLambda.DependencyInjection.ConfigurationService;
-using FluentNHibernate.Cfg;
+﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 #if (AddDependencyInjection == false)
 using System;
+#else
+using DefaultLambda.DependencyInjection.ConfigurationService;
 #endif
 
 namespace DefaultLambda.Database

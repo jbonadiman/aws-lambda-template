@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
-using Amazon.Lambda.Serialization.Json;
-using Microsoft.Extensions.DependencyInjection;
+using Amazon.Lambda.Serialization.SystemTextJson;
 
-[assembly: LambdaSerializer(typeof(JsonSerializer))]
+[assembly: LambdaSerializer(typeof(CamelCaseLambdaJsonSerializer))]
 
 namespace DefaultLambda
 {
@@ -12,7 +13,11 @@ namespace DefaultLambda
         public Function()
         { }
 
-        public async Task FunctionHandler(string input, ILambdaContext context)
-        { }
+        public async Task<APIGatewayProxyResponse> FunctionHandler(
+            APIGatewayProxyRequest request,
+            ILambdaContext context)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
