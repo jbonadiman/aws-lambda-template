@@ -25,7 +25,7 @@ namespace DefaultLambda.Database
         {
 #if (AddDependencyInjection)
             var connectionString = configurationService
-                .GetConfiguration()["DB_CONN_STRING"]
+                .GetConfiguration()["DB_CONN_STRING"];
 #else
             var connectionString = Environment.GetEnvironmentVariable("DB_CONN_STRING");
 #endif
