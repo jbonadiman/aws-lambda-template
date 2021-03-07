@@ -52,7 +52,8 @@
         "**/*.lock.json",
         ".vs/**",
         ".idea/**",
-        ".git/**"
+        ".git/**",
+        "LICENSE.md"
       ],
       "modifiers": [
         {

@@ -1,1 +1,1 @@
-aws-lambda-template
+DefaultLambda
