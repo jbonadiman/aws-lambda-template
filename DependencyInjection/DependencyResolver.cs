@@ -1,6 +1,9 @@
 ﻿using System;
 using DefaultLambda.DependencyInjection.ConfigurationService;
 using DefaultLambda.DependencyInjection.EnvironmentService;
+#if (AddDatabase)
+using DefaultLambda.Database;
+#endif
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DefaultLambda.DependencyInjection
@@ -54,5 +57,15 @@ namespace DefaultLambda.DependencyInjection
 
             this.RegisterServices?.Invoke(services);
         }
+
+#if (AddDatabase)
+        private void UpdateDatabase(IServiceProvider provider)
+        {
+            var runner = provider.GetRequiredService<IMigrationRunner>();
+
+            // Execute the migrations
+            runner.MigrateUp();
+        }
+#endif
     }
 }
