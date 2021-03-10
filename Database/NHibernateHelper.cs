@@ -44,10 +44,7 @@ namespace DefaultLambda.Database
                     {
                         // Add mappings here
                     }
-                )
-                .ExposeConfiguration(cfg =>
-                    new SchemaUpdate(cfg).ExecuteAsync(true, true))
-                .BuildConfiguration();
+                ).BuildConfiguration();
 
             this._hbnSessionFactory = hbnConfiguration.BuildSessionFactory();
         }
