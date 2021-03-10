@@ -17,6 +17,11 @@ namespace DefaultLambda.DependencyInjection
             this.RegisterServices = registerServices;
             this.ConfigureServices(serviceCollection);
             this.ServiceProvider = serviceCollection.BuildServiceProvider();
+
+#if (AddDatabase)
+            using IServiceScope scope = this.ServiceProvider.CreateScope();
+            UpdateDatabase(scope.ServiceProvider);
+#endif
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -30,6 +35,22 @@ namespace DefaultLambda.DependencyInjection
                 {
                     CurrentDirectory = this.CurrentDirectory
                 });
+            
+#if (AddDatabase)
+            services.AddSingleton<INHibernateHelper, NHibernateHelper>();
+
+            services
+                .AddFluentMigratorCore()
+                .ConfigureRunner(builder =>
+                    builder.AddPostgres()
+                        .WithGlobalConnectionString(
+                            provider => 
+                                provider
+                                    .GetService<IConfigurationService>()?
+                                    .GetConfiguration()["DB_CONN_STRING"])
+                        .ScanIn(Assembly.GetExecutingAssembly()).For.Migrations())
+                .AddLogging(builder => builder.AddFluentMigratorConsole());
+#endif
 
             this.RegisterServices?.Invoke(services);
         }

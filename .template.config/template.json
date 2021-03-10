@@ -30,7 +30,7 @@
       "datatype": "bool",
       "defaultValue": "true"
     },
-    "AddNHibernate": {
+    "AddDatabase": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "true"
@@ -64,7 +64,7 @@
           ]
         },
         {
-          "condition": "(!AddNHibernate)",
+          "condition": "(!AddDatabase)",
           "exclude": [
             "Database/INHibernateHelper.cs",
             "Database/NHibernateHelper.cs",

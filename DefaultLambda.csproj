@@ -11,13 +11,15 @@
     <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.1.0" />
   </ItemGroup>
   
-  <ItemGroup Condition="$(UsePostgres) == true AND $(AddNHibernate) == true">
+  <ItemGroup Condition="$(UsePostgres) == true AND $(AddDatabase) == true">
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.2" />
   </ItemGroup>
   
-  <ItemGroup Condition="$(AddNHibernate) == true">
+  <ItemGroup Condition="$(AddDatabase) == true">
     <PackageReference Include="FluentNHibernate" Version="3.1.0" />
     <PackageReference Include="NHibernate" Version="5.3.5" />
+    <PackageReference Include="FluentMigrator" Version="3.2.15" />
+    <PackageReference Include="FluentMigrator.Runner" Version="3.2.15" />
   </ItemGroup>
   
   <ItemGroup Condition="$(AddDependencyInjection) == true">
@@ -32,6 +34,10 @@
     <EmbeddedResource Include="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Database\Migrations" />
   </ItemGroup>
 
 </Project>
