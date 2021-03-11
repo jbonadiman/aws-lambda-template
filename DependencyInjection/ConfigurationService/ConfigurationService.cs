@@ -24,7 +24,7 @@ namespace DefaultLambda.DependencyInjection.ConfigurationService
                     optional: true)
                 .AddJsonFile(
                     "appsettings.json",
-                    optional: false,
+                    optional: true,
                     reloadOnChange: true)
                 .AddEnvironmentVariables()
                 .Build();
